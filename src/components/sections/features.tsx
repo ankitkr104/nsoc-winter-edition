@@ -1,7 +1,8 @@
 "use client"
 
 import { motion, type Variants } from "motion/react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { siteContent } from "@/config/content"
 
@@ -49,7 +50,7 @@ export function Features() {
           const Icon = feature.icon
           return (
             <motion.div key={feature.id} variants={cardVariants}>
-              <Card className="h-full hover:-translate-y-1 transition-transform duration-300">
+              <SpotlightCard className="h-full">
                 <CardHeader className="pb-4">
                   <div className="mb-2 h-10 w-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary glow-border">
                     <Icon className="h-5 w-5" />
@@ -61,7 +62,7 @@ export function Features() {
                     {feature.description}
                   </p>
                 </CardContent>
-              </Card>
+              </SpotlightCard>
             </motion.div>
           )
         })}

@@ -1,11 +1,50 @@
 "use client"
 
-import { motion, type Variants } from "motion/react"
+import * as React from "react"
+import { motion, type Variants, useMotionValue, useMotionTemplate } from "motion/react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { siteContent } from "@/config/content"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle2 } from "lucide-react"
+
+function PrizeCard({ rank, itemVariants }: { rank: any, itemVariants: Variants }) {
+  const Icon = rank.icon
+
+  return (
+    <motion.div variants={itemVariants}>
+      <SpotlightCard className={`h-full ${
+        rank.tag ? 'border-sky-400/30 shadow-[0_0_30px_rgba(56,189,248,0.1)]' : ''
+      }`}>
+        {rank.tag && (
+          <div className="absolute top-0 right-0 bg-sky-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-bl-lg shadow-sm z-10">
+            {rank.tag}
+          </div>
+        )}
+        <div className="relative z-10">
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-3 mb-2">
+              <Icon className="h-6 w-6 text-sky-500" />
+              <CardTitle className="text-xl">{rank.rank}</CardTitle>
+            </div>
+            <Badge variant="outline" className="w-fit">{rank.rewards}</Badge>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {rank.items.map((item: string, i: number) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle2 className="h-4 w-4 text-sky-500 shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </div>
+      </SpotlightCard>
+    </motion.div>
+  )
+}
 
 export function Prizes() {
   const containerVariants: Variants = {
@@ -58,37 +97,9 @@ export function Prizes() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
         >
-          {siteContent.prizes.ranks.map((rank) => {
-            const Icon = rank.icon
-            return (
-              <motion.div key={rank.rank} variants={itemVariants}>
-                <Card className={`h-full relative overflow-hidden transition-all duration-300 hover:-translate-y-1 ${rank.tag ? 'border-primary/50 shadow-[0_0_30px_rgba(0,229,255,0.1)]' : ''}`}>
-                  {rank.tag && (
-                    <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-bl-lg">
-                      {rank.tag}
-                    </div>
-                  )}
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Icon className="h-6 w-6 text-primary" />
-                      <CardTitle className="text-xl">{rank.rank}</CardTitle>
-                    </div>
-                    <Badge variant="outline" className="w-fit">{rank.rewards}</Badge>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {rank.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )
-          })}
+          {siteContent.prizes.ranks.map((rank) => (
+            <PrizeCard key={rank.rank} rank={rank} itemVariants={itemVariants} />
+          ))}
         </motion.div>
 
         <motion.div

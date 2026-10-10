@@ -3,7 +3,8 @@
 import { motion, type Variants } from "motion/react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { siteContent } from "@/config/content"
-import { Card, CardContent } from "@/components/ui/card"
+import { CardContent } from "@/components/ui/card"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 
@@ -28,7 +29,7 @@ export function Sponsors() {
   }
 
   return (
-    <section className="py-16 md:py-24">
+    <section id="sponsors" className="py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-24">
         
         {/* Sponsors */}
@@ -40,10 +41,13 @@ export function Sponsors() {
             transition={{ duration: 0.6 }}
             className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
           >
-            <div>
-              <SectionHeading subheading="Track Record & Backing" className="md:items-start text-left mb-0">
+            <div className="flex flex-col items-start text-left">
+              <div className="inline-flex items-center rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-sm font-medium text-sky-500 mb-4">
+                Track Record & Backing
+              </div>
+              <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">
                 Past Sponsors.
-              </SectionHeading>
+              </h2>
               <p className="text-muted-foreground max-w-2xl mt-4 text-left">
                 A look back at the incredible organizations and platforms that powered our previous cohorts with funding, developer tools, and infrastructure.
               </p>
@@ -61,25 +65,27 @@ export function Sponsors() {
             className="grid md:grid-cols-3 gap-6"
           >
             {siteContent.sponsors.map((sponsor) => (
-              <motion.div key={sponsor.name} variants={itemVariants}>
-                <Card className="h-full bg-background/50 flex flex-col hover:border-primary/50 transition-colors">
-                  <CardContent className="p-6 flex-1 flex flex-col">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-primary font-semibold mb-2">
-                      {sponsor.tier}
-                    </span>
-                    <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                      {sponsor.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-                      {sponsor.description}
-                    </p>
-                    <Button variant="link" className="p-0 h-auto justify-start text-primary" asChild>
-                      <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
-                        Visit Website <ExternalLink className="ml-2 h-3 w-3" />
-                      </a>
-                    </Button>
-                  </CardContent>
-                </Card>
+              <motion.div key={sponsor.name} variants={itemVariants} className="flex flex-col h-full">
+                <SpotlightCard className="h-full flex flex-col flex-1">
+                  <div className="relative z-10 flex-1 flex flex-col">
+                    <CardContent className="p-6 flex-1 flex flex-col h-full">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-2">
+                        {sponsor.tier}
+                      </span>
+                      <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                        {sponsor.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
+                        {sponsor.description}
+                      </p>
+                      <Button variant="link" className="p-0 h-auto justify-start text-sky-500 hover:text-sky-400 mt-auto" asChild>
+                        <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
+                          Visit Website <ExternalLink className="ml-2 h-3 w-3" />
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </div>
+                </SpotlightCard>
               </motion.div>
             ))}
           </motion.div>
@@ -94,10 +100,13 @@ export function Sponsors() {
             transition={{ duration: 0.6 }}
             className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
           >
-            <div>
-              <SectionHeading subheading="Ecosystem & Grassroots Network" className="md:items-start text-left mb-0">
+            <div className="flex flex-col items-start text-left">
+              <div className="inline-flex items-center rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-sm font-medium text-sky-500 mb-4">
+                Ecosystem & Grassroots Network
+              </div>
+              <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">
                 Community Partners.
-              </SectionHeading>
+              </h2>
               <p className="text-muted-foreground max-w-2xl mt-4 text-left">
                 The active colleges, student clubs, developer hubs, and communities driving enthusiastic participation and innovation across the nation.
               </p>

@@ -80,10 +80,13 @@ export function Roles() {
 
                 <motion.div 
                   variants={itemVariants}
-                  className="flex-1 relative aspect-[4/3] rounded-2xl overflow-hidden glass border border-border/50 p-6 flex items-center justify-center bg-gradient-to-br from-background/80 to-muted/20"
+                  className="flex-1 relative aspect-[4/3] flex items-center justify-center group"
                 >
-                  <div className="absolute inset-0 bg-snow-pattern opacity-20" />
-                  <Icon className="h-32 w-32 text-muted/20 drop-shadow-[0_0_30px_rgba(0,229,255,0.1)]" />
+                  <img 
+                    src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${role.title.replace(/\s+/g, "")}&backgroundColor=38bdf8,818cf8,34d399&radius=50&mouth=smile&eyes=happy,default&eyebrow=defaultNatural,raisedExcitedNatural`} 
+                    alt={role.title}
+                    className="relative z-10 w-[80%] h-[80%] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
+                  />
                 </motion.div>
               </motion.div>
             )

@@ -1,12 +1,61 @@
+"use client"
+
+import * as React from "react"
 import Link from "next/link"
+import { motion, useMotionValue, useMotionTemplate } from "motion/react"
 import { Code, Camera, Briefcase, MonitorPlay, MessageCircle, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { siteConfig, NAV_LINKS } from "@/config/site"
 
 export function Footer() {
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const [isHovering, setIsHovering] = React.useState(false)
+
+  const handleMouseMove = React.useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      const { left, top } = e.currentTarget.getBoundingClientRect()
+      mouseX.set(e.clientX - left)
+      mouseY.set(e.clientY - top)
+    },
+    [mouseX, mouseY]
+  )
   return (
-    <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-md px-4 sm:px-8 md:px-12 py-10 lg:py-16">
-      <div className="mx-auto max-w-7xl">
+    <motion.footer 
+      id="contact"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      className="relative overflow-hidden border-t border-border/50 bg-background/50 backdrop-blur-md px-4 sm:px-8 md:px-12 py-10 lg:py-16"
+    >
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 hidden md:block"
+        style={{
+          opacity: isHovering ? 1 : 0,
+          background: useMotionTemplate`
+            radial-gradient(
+              600px circle at ${mouseX}px ${mouseY}px,
+              rgba(56, 189, 248, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+      {/* Glowing Top Border Trace */}
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[1px] z-10 transition-opacity duration-300 hidden md:block"
+        style={{
+          opacity: isHovering ? 1 : 0,
+          background: useMotionTemplate`
+            radial-gradient(
+              400px circle at ${mouseX}px 0px,
+              rgba(56, 189, 248, 0.8),
+              transparent 100%
+            )
+          `,
+        }}
+      />
+      <div className="mx-auto max-w-7xl relative z-10">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 lg:gap-16 mb-10 lg:mb-16">
           
           {/* Brand & Description */}
@@ -98,6 +147,6 @@ export function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

@@ -27,7 +27,7 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "NSoC Winter Edition",
+  name: "NSoC Spring Edition",
   description: "A 45-day open source program where project admins bring real codebases and contributors close issues that ship to production.",
   url: "https://nsoc.in",
   links: {
@@ -41,11 +41,11 @@ export const siteConfig: SiteConfig = {
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { name: "Home", href: "/" },
-  { name: "Leaderboard", href: "/leaderboard" },
-  { name: "Projects", href: "/projects" },
-  { name: "Sponsors", href: "/sponsors" },
-  { name: "Team", href: "/team" },
+  { name: "About", href: "#about" },
+  { name: "Process", href: "#process" },
+  { name: "Impact", href: "#impact" },
+  { name: "Sponsors", href: "#sponsors" },
+  { name: "Contact", href: "#contact" },
 ]
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
