@@ -1,6 +1,6 @@
 # NSoC Winter Edition 2026 - Homepage Redesign
 
-![NSoC Winter Edition Preview](public/preview.png) *(Note: Replace with actual screenshot)*
+![NSoC Winter Edition Preview]
 
 A highly optimized, modern, and interactive homepage redesign for the **Nexus Spring of Code (NSoC) Winter Edition 2026**. 
 
