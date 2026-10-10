@@ -8,6 +8,7 @@ import confetti from "canvas-confetti"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { siteContent } from "@/config/content"
 
 export function Hero() {
   const titleRef = React.useRef<HTMLHeadingElement>(null)
@@ -128,18 +129,27 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-8 max-w-3xl text-lg sm:text-xl md:text-2xl font-medium text-foreground/90 leading-relaxed"
+          className="mb-6 max-w-3xl text-lg sm:text-xl md:text-2xl font-medium text-foreground/90 leading-relaxed"
         >
-          A 45-day open source program where project admins bring real codebases and contributors close issues that ship to production.
+          {siteContent.hero.tagline}
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-10 max-w-2xl text-base sm:text-lg text-muted-foreground"
+          className="mb-4 max-w-2xl text-base sm:text-lg text-muted-foreground"
         >
-          Nexus Spring of Code (NSoC) is an open source contribution program designed to help developers explore open source, collaborate on real projects, and grow their development skills.
+          {siteContent.hero.subTagline}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
+          className="mb-10 max-w-2xl text-base sm:text-lg font-bold text-primary glow-text"
+        >
+          {siteContent.hero.highlight}
         </motion.p>
 
         <motion.div

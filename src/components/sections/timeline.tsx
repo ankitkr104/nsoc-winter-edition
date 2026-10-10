@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Card, CardContent } from "@/components/ui/card"
 
-import { TIMELINE_EVENTS } from "@/config/site"
+import { siteContent } from "@/config/content"
 
 export function Timeline() {
   return (
@@ -26,8 +26,7 @@ export function Timeline() {
         <div className="absolute left-[39px] sm:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border/50 dark:bg-border/30" />
         
         <div className="space-y-12">
-          {TIMELINE_EVENTS.map((event, index) => {
-            const Icon = event.icon
+          {siteContent.timeline.map((event, index) => {
             const isEven = index % 2 === 0
             
             return (
@@ -42,8 +41,8 @@ export function Timeline() {
                 }`}
               >
                 {/* Center Node */}
-                <div className="absolute left-[39px] sm:left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-4 border-background bg-primary/10 text-primary glow-border z-10 shadow-[0_0_10px_rgba(0,229,255,0.2)]">
-                  <Icon className="h-5 w-5" />
+                <div className="absolute left-[39px] sm:left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-primary/20 text-primary glow-border z-10">
+                  <div className="h-3 w-3 rounded-full bg-primary" />
                 </div>
                 
                 {/* Content Card */}
@@ -52,9 +51,14 @@ export function Timeline() {
                 }`}>
                   <Card className="hover:border-primary/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,229,255,0.07)] transition-all duration-300">
                     <CardContent className="p-6">
-                      <time className="font-mono text-sm font-semibold text-primary mb-2 block">
-                        {event.date}
-                      </time>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <time className="font-mono text-sm font-semibold text-primary">
+                          {event.date}
+                        </time>
+                        <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground bg-muted/30 px-2 py-0.5 rounded">
+                          {event.step}
+                        </span>
+                      </div>
                       <h3 className="font-display text-xl font-bold text-foreground mb-2">
                         {event.title}
                       </h3>
